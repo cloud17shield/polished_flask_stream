@@ -1,21 +1,21 @@
 {% macro navlink(endpoint,text,icon) %}
-{%- if request.endpoint.endswith(endpoint) == True %}
-<li class="active"><a href="{{endpoint}}"><i class="{{icon}}"></i><span>{{text}}</span> </a> </li>
-{%- else %}
-<li><a href="{{endpoint}}"><i class="{{icon}}"></i><span>{{text}}</span> </a> </li>
-{%- endif %}
+    {%- if request.endpoint.endswith(endpoint) == True %}
+        <li class="active"><a href="{{ endpoint }}"><i class="{{ icon }}"></i><span>{{ text }}</span> </a></li>
+    {%- else %}
+        <li><a href="{{ endpoint }}"><i class="{{ icon }}"></i><span>{{ text }}</span> </a></li>
+    {%- endif %}
 {% endmacro %}
 <div class="subnavbar">
-  <div class="subnavbar-inner">
-    <div class="container">
-      <ul class="mainnav">
+    <div class="subnavbar-inner">
+        <div class="container">
+            <ul class="mainnav">
 
-        {{ navlink("charts","Real-time processing results","icon-facetime-video") }}
+                {{ navlink("charts","Real-time processing results","icon-facetime-video") }}
 
-      </ul>
+            </ul>
+        </div>
+        <!-- /container -->
     </div>
-    <!-- /container --> 
-  </div>
-  <!-- /subnavbar-inner --> 
+    <!-- /subnavbar-inner -->
 </div>
 <!-- /subnavbar -->
