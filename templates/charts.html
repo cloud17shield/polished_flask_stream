@@ -1,86 +1,86 @@
 {% extends "layout_user.html" %}
 {% block title %}Charts{% endblock %}
 {% block content %}
-                <div class="row">
-                    <div class="span6">
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    Drunk detect</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <img src="{{ url_for('drunk_detect') }}">
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
-                        <!-- /widget -->
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    Drowy detect</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <img src="{{ url_for('drowy_detect') }}">
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
-
-                    </div>
-                    <!-- /span6 -->
-                    <div class="span6">
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    Dangerous object detect</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <img src="{{ url_for('dangerous_object_detect') }}">
-
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
-                        <!-- /widget -->
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    Distracted detect</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <img src="{{ url_for('distracted_detect') }}">
-                                <!-- /-chart -->
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
-                        <!-- /widget -->
-                    </div>
-
-                    <div class="span6">
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    socket on</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <img src="{{ url_for('socket_app') }}">
-                                <!-- /bar-chart -->
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
-
-                    </div>
-
-                    <!-- /span6 -->
+    <div class="row">
+        <div class="span6">
+            <div class="widget">
+                <div class="widget-header">
+                    <i class="icon-bar-chart"></i>
+                    <h3>
+                        Drunk detect</h3>
                 </div>
-                <!-- /row -->
+                <!-- /widget-header -->
+                <div class="widget-content">
+                    <img src="{{ url_for('drunk_detect') }}">
+                </div>
+                <!-- /widget-content -->
+            </div>
+            <!-- /widget -->
+            <div class="widget">
+                <div class="widget-header">
+                    <i class="icon-bar-chart"></i>
+                    <h3>
+                        Drowsy detect</h3>
+                </div>
+                <!-- /widget-header -->
+                <div class="widget-content">
+                    <img src="{{ url_for('drowy_detect') }}">
+                </div>
+                <!-- /widget-content -->
+            </div>
+
+        </div>
+        <!-- /span6 -->
+        <div class="span6">
+            <div class="widget">
+                <div class="widget-header">
+                    <i class="icon-bar-chart"></i>
+                    <h3>
+                        Dangerous object detect</h3>
+                </div>
+                <!-- /widget-header -->
+                <div class="widget-content">
+                    <img src="{{ url_for('dangerous_object_detect') }}">
+
+                </div>
+                <!-- /widget-content -->
+            </div>
+            <!-- /widget -->
+            <div class="widget">
+                <div class="widget-header">
+                    <i class="icon-bar-chart"></i>
+                    <h3>
+                        Distracted detect</h3>
+                </div>
+                <!-- /widget-header -->
+                <div class="widget-content">
+                    <img src="{{ url_for('distracted_detect') }}">
+                    <!-- /-chart -->
+                </div>
+                <!-- /widget-content -->
+            </div>
+            <!-- /widget -->
+        </div>
+
+        <div class="span6">
+            <div class="widget">
+                <div class="widget-header">
+                    <i class="icon-bar-chart"></i>
+                    <h3>
+                        socket on</h3>
+                </div>
+                <!-- /widget-header -->
+                <div class="widget-content">
+                    <img src="{{ url_for('socket_app') }}">
+                    <!-- /bar-chart -->
+                </div>
+                <!-- /widget-content -->
+            </div>
+
+        </div>
+
+        <!-- /span6 -->
+    </div>
+    <!-- /row -->
 
 {% endblock %}

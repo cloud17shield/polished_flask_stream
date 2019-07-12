@@ -38,8 +38,8 @@ def drunk_detect():
     return Response(kafka_stream2(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-@app.route('/drowy_detect')
-def drowy_detect():
+@app.route('/drowsy_detect')
+def drowsy_detect():
     return Response(kafka_stream1(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
@@ -60,40 +60,28 @@ def socket_app():
 
 def kafka_stream1():
     for msg in consumer1:
-        print('start playing...')
-        print(len(msg), len(msg.value))
-        print(type(msg.value))
-        print('key:', msg.key)
+        print('Drowsy', msg.key, len(msg.value), msg.timestamp, int(msg.timestamp) - int(msg.key.decode('utf-8')))
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + msg.value + b'\r\n\r\n')
 
 
 def kafka_stream2():
     for msg in consumer2:
-        print('start playing...')
-        print(len(msg), len(msg.value))
-        print(type(msg.value))
-        print('key:', msg.key)
+        print('Drunk', msg.key, len(msg.value), msg.timestamp, int(msg.timestamp) - int(msg.key.decode('utf-8')))
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + msg.value + b'\r\n\r\n')
 
 
 def kafka_stream3():
     for msg in consumer3:
-        print('start playing...')
-        print(len(msg), len(msg.value))
-        print(type(msg.value))
-        print('key:', msg.key)
+        print('Danger', msg.key, len(msg.value), msg.timestamp, int(msg.timestamp) - int(msg.key.decode('utf-8')))
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + msg.value + b'\r\n\r\n')
 
 
 def kafka_stream4():
     for msg in consumer4:
-        print('start playing...')
-        print(len(msg), len(msg.value))
-        print(type(msg.value))
-        print('key:', msg.key)
+        print('Distract', msg.key, len(msg.value), msg.timestamp, int(msg.timestamp) - int(msg.key.decode('utf-8')))
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + msg.value + b'\r\n\r\n')
 
@@ -111,7 +99,7 @@ def socket_streaming():
         while True:
             # 获得图片长度
             image_len = struct.unpack('<L', connection.read(struct.calcsize('<L')))[0]
-            print(image_len)
+            print('socket', image_len)
             if not image_len:
                 break
 
@@ -124,7 +112,7 @@ def socket_streaming():
             cv2img = numpy.array(image, dtype=numpy.uint8)[:, :, ::-1]
 
             # send image stream to kafka
-            print('imgshape', cv2img.shape)
+            # print('imgshape', cv2img.shape)
             producer.send(input_topic, value=cv2.imencode('.jpg', cv2img)[1].tobytes(),
                           key=str(int(time.time() * 1000)).encode('utf-8'))
             producer.flush()
