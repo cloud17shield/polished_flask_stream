@@ -1,5 +1,4 @@
 from kafka import KafkaProducer
-
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
 from pyspark import SparkContext, SparkConf
