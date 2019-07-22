@@ -1,7 +1,6 @@
 from kafka import KafkaProducer
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
-
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import SQLContext
 import pickle
@@ -13,11 +12,8 @@ import dlib
 import cv2
 import time
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from io import BytesIO
-from PIL import Image
 
 conf = SparkConf().setAppName("drunk video stream").setMaster("yarn")
 conf.set("spark.scheduler.mode", "FAIR")
@@ -36,9 +32,6 @@ def my_decoder(s):
     return s
 
 
-# numStreams = 5
-# kafkaStreams = [KafkaUtils.createStream(ssc, brokers, 'test-consumer-group', {input_topic: 10}, valueDecoder=my_decoder) for _ in range (numStreams)]
-# unifiedStream = ssc.union(*kafkaStreams)
 kafkaStream = KafkaUtils.createStream(ssc, brokers, 'test-consumer-group-2', {input_topic: 15},
                                       valueDecoder=my_decoder)
 producer = KafkaProducer(bootstrap_servers='G01-01:9092', compression_type='gzip', batch_size=163840,
@@ -63,9 +56,6 @@ with open(model_path, 'rb') as f:
 
 
 def handler(message):
-    # timestamps = message.timestamp().collect()
-    # for i in timestamps:
-    #     print(i)
     records = message.collect()
     for record in records:
         try:
@@ -74,7 +64,7 @@ def handler(message):
             print('tuple', type(record[0]), type(record[1]))
         except Exception:
             print("error")
-        # producer.send(output_topic, b'message received')
+
         key = record[0]
         value = record[1]
 
@@ -122,7 +112,6 @@ def handler(message):
                         break
             current = int(time.time() * 1000)
             if current - int(key) < 2000:
-
                 cv2.putText(frame, "Drunk: " + str(predict_value), (10, 30),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
                 print("drunk prediction:", predict_value)

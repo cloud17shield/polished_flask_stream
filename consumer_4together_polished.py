@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, flash, request, redirect, url_for, g, Response
+from flask import Flask, render_template, Response
 from kafka import KafkaConsumer
 import socket
 import struct

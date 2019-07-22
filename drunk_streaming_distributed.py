@@ -1,7 +1,6 @@
 from kafka import KafkaProducer
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
-
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import SQLContext
 import pickle
@@ -13,11 +12,8 @@ import dlib
 import cv2
 import time
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from io import BytesIO
-from PIL import Image
 
 conf = SparkConf().setAppName("drunk video stream").setMaster("yarn")
 conf.set("spark.scheduler.mode", "FAIR")
@@ -36,9 +32,6 @@ def my_decoder(s):
     return s
 
 
-# numStreams = 5
-# kafkaStreams = [KafkaUtils.createStream(ssc, brokers, 'test-consumer-group', {input_topic: 10}, valueDecoder=my_decoder) for _ in range (numStreams)]
-# unifiedStream = ssc.union(*kafkaStreams)
 kafkaStream = KafkaUtils.createStream(ssc, brokers, 'test-consumer-group-2', {input_topic: 15},
                                       valueDecoder=my_decoder)
 producer = KafkaProducer(bootstrap_servers='G01-01:9092', compression_type='gzip', batch_size=163840,
@@ -72,10 +65,6 @@ def drunk_detect(ss):
     key = ss[0]
     value = ss[1]
 
-    # producer = KafkaProducer(bootstrap_servers='G01-01:9092', compression_type='gzip', batch_size=163840,
-    #                          buffer_memory=33554432, max_request_size=20485760)
-
-
     image = np.asarray(bytearray(value), dtype="uint8")
     img = cv2.imdecode(image, cv2.IMREAD_ANYCOLOR)
     print('img shape', img, img.shape)
@@ -85,8 +74,6 @@ def drunk_detect(ss):
     predict_value = 0
 
     if len(faces) >= 1:
-
-
 
         for face in faces:
 
@@ -118,13 +105,10 @@ def drunk_detect(ss):
                     break
         cv2.putText(frame, "Drunk: " + str(predict_value), (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-    #     producer.send("output2", value=cv2.imencode('.jpg', frame)[1].tobytes(), key=key.encode('utf-8'))
-    #     producer.flush()
+
     else:
         cv2.putText(frame, "No face detected", (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-    #     producer.send("output2", value=cv2.imencode('.jpg', frame)[1].tobytes(), key=key.encode('utf-8'))
-    #     producer.flush()
 
     return tuple([key, frame])
 
@@ -132,8 +116,6 @@ def drunk_detect(ss):
 def handler(message):
     newrdd = message.map(drunk_detect)
     for i in newrdd.collect():
-        # print("text23333?", i)
-        # print("return type:", type(i))
         key = i[0]
         frame = i[1]
         current = int(time.time() * 1000)
