@@ -11,7 +11,7 @@ from keras.applications.mobilenet import preprocess_input
 import tensorflow as tf
 import time
 
-conf = SparkConf().setAppName("distract streaming").setMaster("yarn")
+conf = SparkConf().setAppName("distract streaming 6c").setMaster("yarn")
 conf.set("spark.scheduler.mode", "FAIR")
 conf.set("spark.scheduler.allocation.file", "/opt/spark-2.4.3-bin-hadoop2.7/conf/fairscheduler.xml")
 sc = SparkContext(conf=conf)

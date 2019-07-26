@@ -11,7 +11,7 @@ import dlib
 import cv2
 import time
 
-conf = SparkConf().setAppName("drowsy streaming").setMaster("yarn")
+conf = SparkConf().setAppName("drowsy streaming v2").setMaster("yarn")
 conf.set("spark.scheduler.mode", "FAIR")
 sc = SparkContext(conf=conf)
 sc.setLocalProperty("spark.scheduler.pool", "pool1")

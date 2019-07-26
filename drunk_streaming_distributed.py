@@ -15,7 +15,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-conf = SparkConf().setAppName("drunk video stream").setMaster("yarn")
+conf = SparkConf().setAppName("drunk video stream v2").setMaster("yarn")
 conf.set("spark.scheduler.mode", "FAIR")
 conf.set("spark.scheduler.allocation.file", "/opt/spark-2.4.3-bin-hadoop2.7/conf/fairscheduler.xml")
 sc = SparkContext(conf=conf)

@@ -99,7 +99,7 @@ def socket_streaming():
         while True:
             # 获得图片长度
             image_len = struct.unpack('<L', connection.read(struct.calcsize('<L')))[0]
-            print('socket', image_len)
+            print('socket', str(int(time.time() * 1000)), image_len)
             if not image_len:
                 break
 
