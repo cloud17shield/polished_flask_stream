@@ -11,6 +11,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/polished_flask_stream.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/polished_flask_stream.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/drunk_streaming_distributed.py" beforeDir="false" afterPath="$PROJECT_DIR$/drunk_streaming_distributed.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/pages/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/pages/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/pages/faq.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/pages/faq.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/pages/plans.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/pages/plans.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/pages/reports.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/pages/reports.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/pages/signin.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/pages/signin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/message_avatar1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/message_avatar2.png" beforeDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -231,6 +241,7 @@
       <workItem from="1563980892595" duration="41000" />
       <workItem from="1563980957172" duration="329000" />
       <workItem from="1563981419790" duration="112000" />
+<<<<<<< Updated upstream
       <workItem from="1564121195993" duration="1007000" />
       <workItem from="1564486684006" duration="566000" />
     </task>
@@ -338,7 +349,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="drunk model" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/polished_flask_stream$client.coverage" NAME="client Coverage Results" MODIFIED="1564123241125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/polished_flask_stream$client.coverage" NAME="client Coverage Results" MODIFIED="1564123545290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/drowsy_streaming.py">
