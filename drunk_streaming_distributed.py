@@ -15,7 +15,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-conf = SparkConf().setAppName("drunk video stream v2").setMaster("yarn")
+conf = SparkConf().setAppName("drunk streaming v2").setMaster("yarn")
 conf.set("spark.scheduler.mode", "FAIR")
 conf.set("spark.scheduler.allocation.file", "/opt/spark-2.4.3-bin-hadoop2.7/conf/fairscheduler.xml")
 sc = SparkContext(conf=conf)
@@ -37,9 +37,9 @@ kafkaStream = KafkaUtils.createStream(ssc, brokers, 'test-consumer-group-2', {in
 producer = KafkaProducer(bootstrap_servers='G01-01:9092', compression_type='gzip', batch_size=163840,
                          buffer_memory=33554432, max_request_size=20485760)
 
-csv_file_path = "file:///home/hduser/DrunkDetection/train_data48-100.csv"
+csv_file_path = "file:///home/hduser/DrunkDetection/train_data48.csv"
 predictor_path = "/home/hduser/DrunkDetection/shape_predictor_68_face_landmarks.dat"
-model_path = "/home/hduser/DrunkDetection/rf48-100.pickle"
+model_path = "/home/hduser/DrunkDetection/svc48.pickle"
 
 df = pd.read_csv(csv_file_path, index_col=0)
 print(df.columns)
@@ -50,7 +50,7 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(predictor_path)
-fa = FaceAligner(predictor, desiredFaceWidth=100)
+fa = FaceAligner(predictor, desiredFaceWidth=200)
 with open(model_path, 'rb') as f:
     clf2 = pickle.load(f)
 
@@ -81,7 +81,7 @@ def drunk_detect(ss):
             x_values = [[] for _ in range(48)]
             y_values = [[] for _ in range(48)]
             (x, y, w, h) = rect_to_bb(face)
-            # faceOrig = imutils.resize(img[y: y + h, x: x + w], width=100)
+            # faceOrig = imutils.resize(img[y: y + h, x: x + w], width=200)
             faceAligned = broadcast_fa.value.align(frame, gray, face)
 
             dets = broadcast_detector.value(faceAligned, 0)
@@ -105,7 +105,6 @@ def drunk_detect(ss):
                     break
         cv2.putText(frame, "Drunk: " + str(predict_value), (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-
     else:
         cv2.putText(frame, "No face detected", (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
