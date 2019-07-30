@@ -31,7 +31,7 @@ gdown "https://drive.google.com/uc?id=1Na8QXTkO0J1OpMRs0u-AQ9A6jUvLo7DL"
 # Distracted_mobilenet_full_6c.h5
 gdown "https://drive.google.com/uc?id=1WlraW_Wvb-nIUk_AeXDGGGkNv_mjP1tg"
 
-# Drunk and drowsy human face detect
+# Drunk and drowsy human face landmarking
 gdown "https://drive.google.com/uc?id="
 ```
 
