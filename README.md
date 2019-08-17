@@ -8,6 +8,19 @@ Our project website [https://i.cs.hku.hk/\~msp18018/][1]
 
 ## Code
 
+### Client (Camera)
+
+**Python environment:** 3.6
+
+**Packages need to be installed on local machine:**
+
+```bash
+pip install opencv-python
+```
+
+`client.py` socket client, using in local client, using web camera to socket transmit the live video data(frames). Run it in you local machine(e.g. laptop). Camera device should be included in the local machine.
+
+
 ### WEB
 
 `consumer_4together_polished.py` python flask WEB UI, front end, render 4 detection output and keep the socket server connection online.
@@ -17,7 +30,6 @@ Run following command to start the web server:
 python3 consumer_4together_polished.py
 ```
 
-`client.py` socket client, using in local client, using web camera to socket transmit the live video data(frames). Run it in you local machine(laptop).
 
 ### Spark Streaming
 
@@ -31,6 +43,7 @@ Run following(e.g. drowsy):
 ```
 
 ---- 
+Models has already downloaded in our K8s containers and the image has been backed. There is no need to download models. But if there are any problems relating to model missing (e.g. 'Unable to open file...'), models can be download by:
 
 ## Model Download
 
@@ -65,9 +78,11 @@ wget https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/yolo.h5
 wget https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/yolo-tiny.h5
 ```
 
-## How to
+## Spark, Kafka... parameters
 
-Refer to [https://github.com/cloud17shield/k8s\_env][5]: [spark-default.conf][6], and refer to [k8s.sh][7], some parameters and steps there.
+All the environment settings are included in the newest container images.
+
+To look into detail in our parameter settings, you can refer to [https://github.com/cloud17shield/k8s\_env][5]: [spark-default.conf][6], and refer to [k8s.sh][7], some parameters and steps there.
 
 Set spark configuration, download all the model and copy to every node, modify code: model path, ip and port, Kafka related.
 
