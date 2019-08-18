@@ -24,7 +24,7 @@ input_topic = 'input'
 output_topic = 'output1'
 brokers = "G01-01:2181,G01-02:2181,G01-03:2181,G01-04:2181,G01-05:2181,G01-06:2181,G01-07:2181,G01-08:2181," \
           "G01-09:2181,G01-10:2181,G01-11:2181,G01-12:2181,G01-13:2181,G01-14:2181,G01-15:2181,G01-16:2181"
-predictor_path = "/home/hduser/DrunkDetection/shape_predictor_68_face_landmarks.dat"
+predictor_path = "/home/hduser/shape_predictor_68_face_landmarks.dat"
 
 
 def my_decoder(s):

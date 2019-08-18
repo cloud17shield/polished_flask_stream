@@ -37,9 +37,9 @@ kafkaStream = KafkaUtils.createStream(ssc, brokers, 'test-consumer-group-2', {in
 producer = KafkaProducer(bootstrap_servers='G01-01:9092', compression_type='gzip', batch_size=163840,
                          buffer_memory=33554432, max_request_size=20485760)
 
-csv_file_path = "file:///home/hduser/DrunkDetection/train_data48.csv"
-predictor_path = "/home/hduser/DrunkDetection/shape_predictor_68_face_landmarks.dat"
-model_path = "/home/hduser/DrunkDetection/svc48.pickle"
+csv_file_path = "file:///home/hduser/polished_flask_stream/train_data48.csv"
+predictor_path = "/home/hduser/shape_predictor_68_face_landmarks.dat"
+model_path = "/home/hduser/polished_flask_stream/svc48.pickle"
 
 df = pd.read_csv(csv_file_path, index_col=0)
 print(df.columns)
